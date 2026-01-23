@@ -1,4 +1,9 @@
-let allTasks = [];
+let allTasks = []; // set the array, each index of the allTasks array is a new task
+const $addtaskBtn = document.getElementById('addtaskBtn'); // add button
+const $dropMenu = document.getElementById('dropList'); // dropdown list
+const $dropBtn = document.getElementById('dropBtn'); // button to toggle drop list
+
+
 
 function menu()
 {
@@ -45,11 +50,10 @@ function viewTasks()
 function addTasks()
 {
     // get task info
-    let taskName = prompt("Enter task name");
-    let duration = parseInt(prompt("Enter task duration"));
-    let priority = parseInt(prompt("Enter task priority (1-5)"));
-    
-    // new class instance 
+    const taskName = document.getElementById('task-name');
+    const duration = document.getElementById('task-duration');
+    const priority = document.getElementById('task-priority');
+
     let newTask = new Task(taskName, duration, priority);
     allTasks.push(newTask);
     console.log("Succesfully added task");
@@ -162,5 +166,3 @@ class Task
         return this._taskName;
     }
 }
-
-menu();

@@ -8,5 +8,42 @@
     </head>
     
     <body>
+        <main class="container">
+            <h1>Task Manager</h1>
+
+            <!-- INPUTS ROW ==================================================-->
+            <div class="input-interface">
+
+                <!-- add task button -->
+                <button class="add-task-button" id="addtaskBtn">Add Task</button>
+
+                <!-- filter dropdown -->
+                <div class="dropdown">
+                    <button id="dropBtn">Filter Tasks</button>            
+                    <ul class="hide-drop-list" id="dropList">
+                        <li><button class="drop-item" data-action="edit">Alphabet (A-Z)</button></li>
+                        <li><button class="drop-item" data-action="archive">Priority (1-5)</button></li>
+                        <li><button class="drop-item" data-action="delete">Duration</button></li>
+                    </ul>
+                </div>
+
+                <!-- search bar and button -->
+                <input type="text" class="search-bar" id="searchBar" placeholder="Search task">
+                <button class="search-button" id="searchBtn">Search</button>
+            </div>
+            
+            <!-- ADD TASK LAYER -->
+            <!--
+            <div class="add-task-layer">
+                <h1>Add Task</h1>
+                <form id="add-task">
+                    <input type="text" id="task-name" placeholder="Task Name" required>
+                    <input type="number" id="task-duration" placeholder="Minutes" min="1" required>
+                    <input type="number" id="task-priority" placeholder="Priority (1-5)" min="1" max="5" required>
+                    <button type="submit" id="add-taskBtn">Add Task</button>
+                </form>
+            </div>
+            -->
+        </main>
     </body>
 </html>
