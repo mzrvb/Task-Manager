@@ -20,10 +20,10 @@
                 <!-- filter dropdown -->
                 <div class="dropdown">
                     <button id="dropBtn">Filter Tasks</button>            
-                    <ul class="hide-drop-list" id="dropList">
-                        <li><button class="drop-item" data-action="edit">Alphabet (A-Z)</button></li>
-                        <li><button class="drop-item" data-action="archive">Priority (1-5)</button></li>
-                        <li><button class="drop-item" data-action="delete">Duration</button></li>
+                    <ul id="dropList" class="drop-list">
+                        <li><button class="drop-item" data-action="alphabet">Alphabet (A-Z)</button></li>
+                        <li><button class="drop-item" data-action="priority">Priority (1-5)</button></li>
+                        <li><button class="drop-item" data-action="duration">Duration</button></li>
                     </ul>
                 </div>
 
@@ -33,8 +33,7 @@
             </div>
             
             <!-- ADD TASK LAYER -->
-            <!--
-            <div class="add-task-layer">
+            <div id="addtaskDis" class="hidden">
                 <h1>Add Task</h1>
                 <form id="add-task">
                     <input type="text" id="task-name" placeholder="Task Name" required>
@@ -43,7 +42,6 @@
                     <button type="submit" id="add-taskBtn">Add Task</button>
                 </form>
             </div>
-            -->
         </main>
     </body>
 </html>

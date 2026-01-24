@@ -1,18 +1,42 @@
 .container{
-	width: min(100% - 2rem, 900px); /* responsive + max width */
-	margin: 0 auto;
-	padding: 1.5rem 0;
+	display: flex;
 }
-
 .input-interface{
 	display: flex;
-	flex-direction: column;
-	align-items: center;   /* vertical alignment */
-	gap: 12px;             /* consistent spacing between children */
-	flex-wrap: nowrap;     /* keeps everything on one horizontal line */
+	align-items: center;          /* vertically center children */
+	gap: 12px;                    /* consistent spacing between items */
+	width: 100%;
+	padding: 8px 12px;            /* "skinny bar" padding */
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	background: #fff;
 }
-
-.hide-drop-list
-{
-	
+/* DROPDOWN BUTTON */
+.drop-list{ /* list for drop-items, change vis when dropbutton pressed */
+	display: none;
+	list-style-type: none;
+	margin: 0;
+  	padding: 0;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+.drop-list li{
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+.dropdown li:hover {
+	background-color: green;
+}
+.dropdown{ /* entire div class for droplist, button and list*/
+	position: relative;
+	display: inline-block;
+}
+.drop-list.show { /* change display status, must be lower in order */
+	display: block;
 }
