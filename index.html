@@ -10,41 +10,30 @@
     
     <body>
         <main class="container">
-            <div>
+            
+            <div class="title">
                 <h1>Task Manager</h1>
             </div>
 
             <!-- INPUTS ROW ==================================================-->
             <div class="input-interface">
-
-                <!-- add task button -->
-                <button class="add-task-button" id="addtaskBtn">Add Task</button>
-
-                <!-- filter dropdown -->
-                <div class="dropdown">
-                    <button id="dropBtn">Filter Tasks</button>            
-                    <ul id="dropList" class="drop-list">
-                        <li><button class="drop-item" data-action="alphabet">Alphabet (A-Z)</button></li>
-                        <li><button class="drop-item" data-action="priority">Priority (1-5)</button></li>
-                        <li><button class="drop-item" data-action="duration">Duration</button></li>
+                <!-- task name -->
+                <input type="text" id="task-name" placeholder="Task Name" required> 
+                <!-- due date -->
+                <input type="date" id="taskDueDate" class="task-due-date">
+                <!-- priority dropdown -->
+                <div class="priority">
+                    <button id="dropBtn">Priority</button>            
+                    <ul id="priorityDrop" class="drop-list">
+                        <li><button class="drop-button" data-action="5">5</button></li>
+                        <li><button class="drop-button" data-action="4">4</button></li>
+                        <li><button class="drop-button" data-action="3">3</button></li>
+                        <li><button class="drop-button" data-action="2">2</button></li>
+                        <li><button class="drop-button" data-action="1">1</button></li>
                     </ul>
                 </div>
-
-                <!-- search bar and button -->
-                <input type="text" class="search-bar" id="searchBar" placeholder="Search task">
-                <button class="search-button" id="searchBtn">Search</button>
             </div>
             
-            <!-- ADD TASK LAYER -->
-            <div id="addtaskDis" class="hidden">
-                <h1>Add Task</h1>
-                <form id="add-task">
-                    <input type="text" id="task-name" placeholder="Task Name" required>
-                    <input type="number" id="task-duration" placeholder="Minutes" min="1" required>
-                    <input type="number" id="task-priority" placeholder="Priority (1-5)" min="1" max="5" required>
-                    <button type="submit" id="add-taskBtn">Add Task</button>
-                </form>
-            </div>
         </main>
     </body>
 </html>
