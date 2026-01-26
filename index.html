@@ -9,8 +9,7 @@
     </head>
     
     <body>
-        <main class="container">
-            
+        <main class="container">   
             <div class="title">
                 <h1>Task Manager</h1>
             </div>
@@ -18,22 +17,23 @@
             <!-- INPUTS ROW ==================================================-->
             <div class="input-interface">
                 <!-- task name -->
-                <input type="text" id="task-name" placeholder="Task Name" required> 
+                <input type="text" id="taskName" class="task-name-input" placeholder="Task Name" required> 
                 <!-- due date -->
-                <input type="date" id="taskDueDate" class="task-due-date">
+                <input type="date" id="taskDate" class="task-due-date">
                 <!-- priority dropdown -->
                 <div class="priority">
-                    <button id="dropBtn">Priority</button>            
-                    <ul id="priorityDrop" class="drop-list">
-                        <li><button class="drop-button" data-action="5">5</button></li>
-                        <li><button class="drop-button" data-action="4">4</button></li>
-                        <li><button class="drop-button" data-action="3">3</button></li>
-                        <li><button class="drop-button" data-action="2">2</button></li>
-                        <li><button class="drop-button" data-action="1">1</button></li>
+                    <button id="priorityBtn" class="drop-button">Priority</button>            
+                    <ul id="priorityList" class="drop-list">
+                        <li><button class="drop-option" data-action="5">5</button></li>
+                        <li><button class="drop-option" data-action="4">4</button></li>
+                        <li><button class="drop-option" data-action="3">3</button></li>
+                        <li><button class="drop-option" data-action="2">2</button></li>
+                        <li><button class="drop-option" data-action="1">1</button></li>
                     </ul>
                 </div>
-            </div>
-            
+                <!-- add task button -->
+                <button id="taskBtn" class="add-task-button">Add Task</button>
+            </div>          
         </main>
     </body>
 </html>

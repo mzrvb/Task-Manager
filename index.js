@@ -2,12 +2,12 @@ let allTasks = []; // set the array, each index of the allTasks array is a new t
 
 // grab the drop btn id and drop list id
 const $dropBtn = document.getElementById('dropBtn'); // drop list button
-const $dropMenu = document.getElementById('dropList'); // dropdown list
+const $dropList = document.getElementById('dropList'); // dropdown list
 
 // when the drop btn is clicked toggle showing droplist
 $dropBtn.addEventListener("click", () =>
 {
-    $dropMenu.classList.toggle("show");
+    $dropList.classList.toggle("show");
 })
 
 
