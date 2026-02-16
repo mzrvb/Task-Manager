@@ -6,12 +6,14 @@
         <script src="index.js" defer></script>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="utilities.css">
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     </head>
     
     <body>
         <main class="container">   
-            <div class="title">
+            <div class="title-bar">
                 <h1>Task Manager</h1>
+                <h4>Made with JavaScript, HTML, CSS</h4>
             </div>
 
             <!-- INPUTS ROW ==================================================-->
@@ -33,7 +35,16 @@
                 </div>
                 <!-- add task button -->
                 <button id="taskBtn" class="add-task-button">Add Task</button>
-            </div>          
+            </div> 
+            
+            <!-- SORT BUTTON ROW ==================================================-->
+            <div class="view-interface">
+                <button id="prioritysortBtn" class="sort-button">Sort by Priority</button>
+                <button id="datesortBtn" class="sort-button">Sort by Due Date</button>
+                <button id="alphabetsortBtn" class="sort-button">Sort by Alphabet</button>
+            </div>
+            
+            <div id="taskDisplay"></div>
         </main>
     </body>
 </html>

@@ -1,100 +1,143 @@
-/* Real structure classes and ids go here */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border-style: dotted;
+    font-family: "Google Sans";
 }
-
-body{
-    background-color: rgb(237, 237, 237);
+body{ /* PAGE DESIGN AND FLOW */
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.container{ /* GRAY CONTAINER SURFACE */
+    font-family: "Google Sans";
+    display: flex;
+    flex-direction: column;
 
-.title{
-    display: inline;
-    margin: 30px 0 40px 0;
+    width: min(900px, 95%); 
+    padding: 20px;
+    border-radius: 15px;
+
+    box-shadow: 1px 6px 12px rgba(0, 0, 0, 0.1);
+    background: #ebebeb;
 }
 
-.container{
+/* TITLE BAR ================*/
+.title-bar{ 
     display: flex;
     flex-direction: row;
-    align-items: center;
-    width: min(900px, 95%);   /* responsive */
-    padding: 20px;
-    margin: 50px auto 0;      /* centers horizontally */
-    border-radius: 5px;
-    box-shadow: 1px 6px 12px rgba(0, 0, 0, 0.1);
-    background: #fff;
+    justify-content: space-between; 
+    align-items: baseline;   
+    color: black;       
+    width: 100%;
 }
 
+/* ALL INPUT BUTTONS ================*/
 .input-interface{
     display: flex;
-    flex-direction: row;   /* default, but explicit */
-    gap: 12px;             /* spacing between items */
-    width: 100%;           /* optional: let row stretch */
-    justify-content: center; /* or space-between, flex-start */
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;       /* optional: wraps on smaller screens */
+    
+    gap: 12px;
+    padding: 20px;          
+    width: 100%; 
+}
+.task-name-input, .task-due-date, .drop-button, .add-task-button{   
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+
+    cursor: pointer;
+    border: none;
+    
+    height: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.task-name-input:hover,
+.task-due-date:hover,
+.drop-button:hover{
+    background-color: #f0f0f0;
+}
+.task-name-input:focus,
+.task-due-date:focus,
+.drop-button:focus{
+    background-color: #ffffff;
 }
 
-.dropdown{
-    float: right;
-    right: 0;
+/* priority drop menu */
+.priority
+{
+    display: block;
 }
-
+.drop-list{
+    display: none;
+    position: absolute;
+    width: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
 .drop-list li{
     list-style-type: none;
     display: block;
+    width: 100%;
 }
-
 .drop-option{
-    display: none;
-    padding: 0;
-    margin: 0;
-}
-
-.drop-button {
-  background-color: #e8e8e8;
-  padding: 2px;
-  height: 25px;
-  width:
-  border: none;
-  cursor: pointer;
-}
-
-.add-task-button{
-    background-color: #e8e8e8;
-    padding: 5px;
-    height: 25px;
-    border: none;
-    cursor: pointer;
-}
-
-.show{
     display: block;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    background-color: #ffffff;
 }
-
-h1{
-    color: black;
+.drop-option:hover{
+    background-color: #f0f0f0;
+}
+.add-task-button{
+    background-color: rgb(22, 163, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+.add-task-button:hover{
+    background-color: rgb(22, 140, 0);
 }
 
 .task-name-input{
-    background-color: #e8e8e8;
-    padding: 10px;
-    border: none;
-	width: 300px;
-}
-.task-due-date{
-    border: none;
-    background-color: #e8e8e8;
+    width: 300px;
 }
 
-.task-name-input,
-.task-due-date,
-.priority-input,
-.add-task-button
-.drop-button{
+
+/* View interface */
+.view-interface{
+    display: flex;
+    flex-direction: row;
+    padding: 15px; 
+    gap: 12px;             
+    width: 100%;           
+    justify-content: left;
+    align-items: center;
+}
+.sort-button{ /* ALL SORT BUTTONS */
+    display: flex; 
+    align-items: center; /* get the contents of each flex element centered */
+    justify-content: center; /* ex. the text "Add Task" for the add task button*/
+    font-family: "Google Sans";
+    cursor: pointer;
+    border: none;
     height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.sort-button:hover{
+    background-color: #f0f0f0;
+}
+
+.show{ /* show shit */
+    display: block;
 }
