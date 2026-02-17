@@ -38,12 +38,19 @@
             </div> 
             
             <!-- SORT BUTTON ROW ==================================================-->
-            <div class="view-interface">
-                <button id="prioritysortBtn" class="sort-button">Sort by Priority</button>
-                <button id="datesortBtn" class="sort-button">Sort by Due Date</button>
-                <button id="alphabetsortBtn" class="sort-button">Sort by Alphabet</button>
+            <div class="view-interface hidden">
+                <div id="sortView" class="viewGroup">
+                    <button id="prioritysortBtn" class="sort-priority">Sort by Priority</button>
+                    <button id="datesortBtn" class="sort-date">Sort by Due Date</button>
+                    <button id="alphabetsortBtn" class="sort-alpha">Sort by Alphabet</button>
+                </div>
+                <div id="statusView" class="viewGroup">
+                    <button id="activeviewBtn" class="sort-active">Active</button>
+                    <button id="completedviewBtn" class="sort-completed">Completed</button>
+                </div>
             </div>
             
+            <!-- TASK DISPLAY ==================================================-->
             <div id="taskDisplay"></div>
         </main>
     </body>
