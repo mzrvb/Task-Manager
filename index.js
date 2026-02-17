@@ -8,7 +8,9 @@ class Task {
     }
 }
 
-let allTasks = [];
+// Consolidating to One Array Style
+let allTasks = []; 
+let currentView = "active"; // Track which tab is selected
 let currentSelectedPriority = "";
 
 const $priorityBtn = document.getElementById('priorityBtn');
@@ -55,7 +57,7 @@ function addTask() {
         alert("Name too long");
     }
     else{
-        // create w constructor and push to array
+        // create w constructor and push to array (One Array Style)
         allTasks.push(new Task(name, date, priority));
 
         // reset fields
@@ -80,11 +82,15 @@ $statusButtons.forEach(button => {
         // 2. Add the 'selected' class to the one that was clicked
         this.classList.add('selected');
 
+        // Toggle the global view state
         if (this.id === 'activeviewBtn') {
+            currentView = 'active';
             console.log("Showing Active Tasks...");
         } else {
+            currentView = 'completed';
             console.log("Showing Completed Tasks...");
         }
+        renderTasks();
     });
 });
 
@@ -94,15 +100,27 @@ function renderTasks() {
     const $display = document.getElementById('taskDisplay'); // table display div
     const $viewInterface = document.querySelector('.view-interface'); // toggle buttons
 
-    if (!$display) return; // Safety check
+    if (!$display) return; // safety check
     $display.innerHTML = "";
 
-    // toggle task display visiblity
-    if (allTasks.length > 0) {
-        $viewInterface.classList.remove('hidden');
-    } 
-    else {
-        $viewInterface.classList.add('hidden');
+    // no tasks
+    if (allTasks.length === 0) {
+        $viewInterface.classList.add('hidden'); // Hide sort/status buttons
+        $display.innerHTML = "<p>Your task list is totally empty! Add a task. </p>";
+        return; // Stop here
+    }
+
+    // at least one task exists if here
+    $viewInterface.classList.remove('hidden');
+
+    const filteredTasks = allTasks.filter(task => {
+        return currentView === 'active' ? task.status === 'pending' : task.status === 'completed';
+    });
+
+    // 3. Check if THIS SPECIFIC VIEW is empty
+    if (filteredTasks.length === 0) {
+        $display.innerHTML = `<p>No ${currentView} tasks found.</p>`;
+        return; // Stop here, don't draw the table headers
     }
 
     // table headers
@@ -113,15 +131,22 @@ function renderTasks() {
         <div class="grid-header">Action</div>
     `;
 
-    // map data into grid slots
-    html += allTasks.map(task => {
+    // map data from filteredTasks into grid slots
+    html += filteredTasks.map(task => {
+        // only show done button if the task is pending
+        const completeBtn = task.status === 'pending' 
+            ? `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` 
+            : `<span>✅</span>`;
+
         return `
             <div class="task-name">${task.name}</div>
-            <div class="task-date">${task.date}</div>
-            <div><span class="badge ${task.priority.toLowerCase()}">${task.priority}</span></div>
-            <button onclick="removeTask('${task.id}')">Delete</button>
-        `;
-    }).join("");
+                <div class="task-date">${task.date}</div>
+                <div><span class="badge ${task.priority.toString().toLowerCase()}">${task.priority}</span></div>
+                <div class="task-actions">  ${task.status === 'pending' ? `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` : '✅'}
+                    <button class="delete-btn" onclick="removeTask('${task.id}')"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            `;
+        }).join("");
 
     $display.innerHTML = html;
 }
@@ -144,3 +169,19 @@ document.querySelector('.sort-date').addEventListener('click', () => {
     allTasks.sort((a, b) => new Date(a.date) - new Date(b.date)); // use new date to parse for sort comparison
     renderTasks();
 });
+
+// === TASK STATUS LOGIC ===
+function completeTask(id) {
+    // Find the specific task in the master array
+    const task = allTasks.find(t => t.id === id);
+    if (task) {
+        task.status = "completed"; // Flip the switch
+        renderTasks(); // Redraw everything
+    }
+}
+
+function removeTask(id) {
+    // Filter out the task by ID from the master array
+    allTasks = allTasks.filter(task => task.id !== id);
+    renderTasks();
+}

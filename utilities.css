@@ -180,3 +180,20 @@ body{ /* PAGE DESIGN AND FLOW */
     font-size: 15px;
     color: #666;
 }
+.task-actions {
+    display: flex;          /* Enables Flexbox */
+    justify-content: center; /* Centers buttons horizontally */
+    align-items: center;     /* Centers buttons vertically */
+    gap: 8px;               /* Adds a clean space between the buttons */
+    height: 100%;           /* Ensures it fills the grid cell height */
+}
+.task-actions button {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.task-actions button:hover {
+    background-color: rgb(213, 213, 213) ;
+}
