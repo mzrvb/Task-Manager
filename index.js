@@ -147,7 +147,7 @@ function renderTasks() { // render every sort, task added, or status
         // only show done button if the task is pending
         const completeBtn = task.status === 'pending' ?
              `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` 
-            : `<span>✅</span>`;
+            : ``;
 
         return `
             <div class="task-name">${task.name}</div>
