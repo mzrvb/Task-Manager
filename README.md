@@ -2,12 +2,13 @@
 
 Task manager created using HTML, CSS, and JavsScript.
 
-![Task Manager App](assets/images/task-manager-screenshot.png)
+![Task Manager App](assets/task-manager-screenshot.png)
 
 ## Development
 I consider this my first "real" HTML, CSS, and JavaScript project.
 Took about a month of on-and-off progress and learning during school, completed this prooject over my reading week.
 Was inspired by https://github.com/NisreenSalameh/tasksmanager
+
 Why my codes better:
 - **NOT DOM-centric:** Tasks are stored as an array of obj's in JavaScript
 - **Task Database:** Used constructor as a task creation template, stored in an allTasks array
