@@ -1,4 +1,4 @@
-class Task {
+class Task { // task template
     constructor(name, date, priority){
         this.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
         this.name = name;
@@ -8,15 +8,15 @@ class Task {
     }
 }
 
-// Consolidating to One Array Style
+// allTasks array, array of taks objs
 let allTasks = []; 
-let currentView = "active"; // Track which tab is selected
+let currentView = "active"; // view starts on active by default
 let currentSelectedPriority = "";
 
 const $priorityBtn = document.getElementById('priorityBtn');
 const $priorityList = document.getElementById('priorityList');
 
-// update priority when clicked
+// update priority button when selected
 $priorityList.addEventListener('click', (e) => {
     if (e.target.classList.contains('drop-option')) {
         currentSelectedPriority = e.target.innerText;
@@ -26,11 +26,11 @@ $priorityList.addEventListener('click', (e) => {
 });
 
 // priority dropdown toggle view
-$priorityBtn.addEventListener('click', (event) => {
-    event.stopPropagation(); 
+$priorityBtn.addEventListener('click', (e) => { // if user clicks on button, view dropdown
+    e.stopPropagation(); 
     $priorityList.classList.toggle('show');
 });
-window.addEventListener('click', () => {
+window.addEventListener('click', () => { // if user clicks anywhere in window, hide dropdown
     if ($priorityList.classList.contains('show')){
         $priorityList.classList.remove('show');
     }
@@ -50,14 +50,24 @@ function addTask() {
     const priority = currentSelectedPriority;
 
     // validation
-    if (!name || !date || !priority){
-        alert("Invalid task input");
+    if (!name){
+        alert(`Name task`);
+        return;
     }
-    else if (name.length > 50){
+    if (!date){
+        alert(`Enter task date`);
+        return;
+    }
+    if (!priority){
+        alert(`Enter task priority`);
+        return;
+    }
+    if (name.length > 50){
         alert("Name too long");
+        return;
     }
     else{
-        // create w constructor and push to array (One Array Style)
+        // create w constructor and push to god array
         allTasks.push(new Task(name, date, priority));
 
         // reset fields
@@ -66,13 +76,14 @@ function addTask() {
         $priorityBtn.innerText = "Priority";
         currentSelectedPriority = "";
 
-    // render new task
-    renderTasks();
+        // render new task
+        renderTasks();
+        return;
     }
 }
 
 // === VIEW & SORT BUTTONS ===
-const $statusButtons = document.querySelectorAll('#statusView button');
+const $statusButtons = document.querySelectorAll('#statusView button'); // every button in 
 
 $statusButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -95,32 +106,32 @@ $statusButtons.forEach(button => {
 });
 
 // === TASK DISPLAY ===
-function renderTasks() {
-    // table visiblity, empty, used to refresh appearance every recreation
+function renderTasks() { // render every sort, task added, or status
     const $display = document.getElementById('taskDisplay'); // table display div
-    const $viewInterface = document.querySelector('.view-interface'); // toggle buttons
+    const $viewInterface = document.querySelector('.view-interface'); // sort and status btns
 
     if (!$display) return; // safety check
     $display.innerHTML = "";
 
-    // no tasks
+    // god task array is empty
     if (allTasks.length === 0) {
-        $viewInterface.classList.add('hidden'); // Hide sort/status buttons
-        $display.innerHTML = "<p>Your task list is totally empty! Add a task. </p>";
-        return; // Stop here
+        $viewInterface.classList.add('hidden');
+        $display.innerHTML = "<p>Your task list is empty! Add a task. </p>";
+        return;
     }
 
     // at least one task exists if here
     $viewInterface.classList.remove('hidden');
 
+    // ternary op, if current view is set to active tasks, then task status is pending, otherwise completed
     const filteredTasks = allTasks.filter(task => {
         return currentView === 'active' ? task.status === 'pending' : task.status === 'completed';
     });
 
-    // 3. Check if THIS SPECIFIC VIEW is empty
+    // EDGE CASE: empty view, display empty message
     if (filteredTasks.length === 0) {
         $display.innerHTML = `<p>No ${currentView} tasks found.</p>`;
-        return; // Stop here, don't draw the table headers
+        return;
     }
 
     // table headers
@@ -134,17 +145,17 @@ function renderTasks() {
     // map data from filteredTasks into grid slots
     html += filteredTasks.map(task => {
         // only show done button if the task is pending
-        const completeBtn = task.status === 'pending' 
-            ? `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` 
+        const completeBtn = task.status === 'pending' ?
+             `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` 
             : `<span>✅</span>`;
 
         return `
             <div class="task-name">${task.name}</div>
-                <div class="task-date">${task.date}</div>
-                <div><span class="badge ${task.priority.toString().toLowerCase()}">${task.priority}</span></div>
-                <div class="task-actions">  ${task.status === 'pending' ? `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` : '✅'}
-                    <button class="delete-btn" onclick="removeTask('${task.id}')"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
+            <div class="task-date">${task.date}</div>
+            <div class="task-priority"><span class="badge ${task.priority.toString().toLowerCase()}">${task.priority}</span></div>
+            <div class="task-actions">  ${task.status === 'pending' ? `<button class="complete-btn" onclick="completeTask('${task.id}')">Done</button>` : ''}
+                <button class="delete-btn" onclick="removeTask('${task.id}')">Delete<i class="fa-solid fa-trash-can"></i></button>
+            </div>
             `;
         }).join("");
 
@@ -172,11 +183,10 @@ document.querySelector('.sort-date').addEventListener('click', () => {
 
 // === TASK STATUS LOGIC ===
 function completeTask(id) {
-    // Find the specific task in the master array
     const task = allTasks.find(t => t.id === id);
     if (task) {
-        task.status = "completed"; // Flip the switch
-        renderTasks(); // Redraw everything
+        task.status = "completed"; // flip status
+        renderTasks();
     }
 }
 
