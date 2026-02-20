@@ -6,7 +6,7 @@ Task manager app created using HTML, CSS, and JavsScript.
 
 ## Development
 I consider this my first "real" HTML, CSS, and JavaScript project.
-Took about a month of on-and-off progress and learning during school, completed this prooject over my reading week.
+Took about a month of on-and-off progress and learning during school, completed this project over my reading week.
 
 Was inspired by https://github.com/NisreenSalameh/tasksmanager
 
@@ -23,4 +23,5 @@ Why my codes better:
 - **Delete Tasks:** Delete tasks that are no longer needed.
 - **Priority and Due Date Tracking:** Set task priorities by level (1-5) and due dates for better task management.
 - **Sorting and Filtering:** Sort tasks by priority or due date and filter tasks by status (Active Tasks, Completed Tasks).
+
 
