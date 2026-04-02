@@ -5,7 +5,6 @@ Task manager app created using HTML, CSS, and JavsScript.
 ![Task Manager App Screenshot](assets/task-manager-screenshot.png)
 
 ## Development
-I consider this my first "real" HTML, CSS, and JavaScript project.
 Took about a month of on-and-off progress and learning during school, completed this project over my reading week.
 
 Was inspired by https://github.com/NisreenSalameh/tasksmanager
